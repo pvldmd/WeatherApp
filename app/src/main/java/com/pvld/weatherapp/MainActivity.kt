@@ -31,7 +31,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         settings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
 
+        //set saved city from SharedPreferences
         spinner_main_cities.setSelection(settings.getInt(PREF_POSITION, 0))
+        //if a new city is selected: save city and position to SharedPref, load data and update UI
         spinner_main_cities.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
@@ -52,6 +54,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        // reload weather data
         settings.getString(PREF_CITY, "Moscow")?.let { loadCurrentWeather(this, it) }
     }
 
@@ -59,8 +62,10 @@ class MainActivity : AppCompatActivity() {
         group_weather_info.visibility = View.INVISIBLE
         progress_bar.visibility = ProgressBar.VISIBLE
 
+        // load weather data
         CoroutineScope(Dispatchers.IO).launch{
             val response = service.loadWeatherData("${city},RU")
+            // update UI or show toast with error code or exception
             withContext(Dispatchers.Main){
                 try {
                     if (response.isSuccessful) {
@@ -76,7 +81,6 @@ class MainActivity : AppCompatActivity() {
                 group_weather_info.visibility = View.VISIBLE
                 progress_bar.visibility = ProgressBar.GONE
             }
-
         }
     }
 
