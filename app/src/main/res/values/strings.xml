@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Weather App</string>
+
+    <string-array name="cities">
+        <item>Moscow</item>
+        <item>Saint Petersburg</item>
+        <item>Chelyabinsk</item>
+        <item>Kazan</item>
+        <item>Krasnoyarsk</item>
+        <item>Nizhniy Novgorod</item>
+        <item>Novosibirsk</item>
+        <item>Omsk</item>
+        <item>Perm</item>
+        <item>Rostov-na-Donu</item>
+        <item>Samara</item>
+        <item>Ufa</item>
+        <item>Volgograd</item>
+        <item>Voronezh</item>
+        <item>Yekaterinburg</item>
+    </string-array>
+
+</resources>
